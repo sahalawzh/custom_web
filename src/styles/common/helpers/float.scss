@@ -1,0 +1,13 @@
+@each $key, $val in (r, right), (l, left) {
+  .lw-fl-#{$key} {
+    float: $val;
+  }
+}
+
+.lw-clearfix::after {
+  content: '';
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  display: block;
+}

@@ -1,0 +1,16 @@
+@each $key, $val in (flex, flex), (ib, inline-block), (b, block) {
+  .lw-dp-#{$key} {
+    display: $val;
+  }
+}
+
+@each $key, $val in (start, flex-start), (end, flex-end), (center, center), (space-around, space-around), (space-between, space-between) {
+  &.is-justify-#{$key} {
+    justify-content: $val;
+  }
+  @each $key, $val in (top, flex-start), (middle, center), (bottom, flex-end) {
+    &.is-align-#{$key} {
+      align-items: $val;
+    }
+  }
+}

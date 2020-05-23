@@ -1,0 +1,5 @@
+@each $key, $val in (c, center), (l, left), (r, right) {
+  .lw-ta-#{$key} {
+    text-align: $val;
+  }
+}

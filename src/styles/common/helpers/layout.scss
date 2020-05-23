@@ -1,0 +1,47 @@
+@mixin col($type) {
+  @for $i from 1 through 24{
+    .lw-col-#{$i}{
+      @if $type{
+        float: left;
+        width: (100% / 24 * $i);
+        &.lw-col-offset--#{$i} {
+          margin-left: (100% / 24 * $i);
+        }
+      }@else{
+        width: (100% / 24 * $i);
+        &.lw-col-offset--#{$i} {
+          margin-left: (100% / 24 * $i);
+        }
+      }
+    }
+  }
+}
+@mixin generateGrid($type){
+	@if $type{
+    position: relative;
+    box-sizing: border-box;
+    &::after {
+      display: table;
+      content: "";
+      clear: both;
+    }
+		@include col(#{$type});
+	}@else{
+    display: flex;
+    &::after {
+      display: none;
+    }
+    @include col(#{$type});
+  }
+}
+
+.lw-row--float{
+  @include generateGrid(true);
+}
+.lw-row--flex {
+  @include generateGrid(false);
+}
+
+@function px2rem($px) {
+  @return $px/16/2+rem;
+}
