@@ -1,0 +1,16 @@
+.page-index {
+  padding: px2rem(90) 0 px2rem(100);
+  .part-item {
+    position: relative;
+    width: 100%;
+    height: px2rem(450);
+    margin-bottom: px2rem(10);
+    &:first-child {
+      margin-bottom: 0;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 @each $key, $val in (flex, flex), (ib, inline-block), (b, block) {
-  .lw-dp-#{$key} {
+  .lw-#{$key} {
     display: $val;
   }
 }

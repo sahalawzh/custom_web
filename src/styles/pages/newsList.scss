@@ -1,0 +1,56 @@
+.page-news {
+  position: relative;
+  padding: px2rem(90) 0 px2rem(100);
+  background-image: linear-gradient($--border-color, $--white-color);
+  .new-container {
+    padding: 0 px2rem(25);
+    h2 {
+      font-size: px2rem(46);
+      color: $--light-gray-color;
+      padding: px2rem(30) 0;
+      font-weight: 500;
+    }
+    .new-item {
+      position: relative;
+      margin-top: px2rem(18);
+      .new-img {
+        width: 100%;
+        height: px2rem(410);
+      }
+      h4 {
+        color: $--default-color;
+        font-size: $--lg-font-size;
+        font-weight: 500;
+        margin-top: px2rem(18);
+        @include ellipsis(2)
+      }
+      .sub-title {
+        padding: px2rem(10) 0 px2rem(4);
+      }
+      p {
+        color: $--main-color;
+        font-size: $--sm-font-size;
+        line-height: px2rem(42);
+        @include ellipsis(4)
+      }
+      &__ft {
+        font-size: $--sm-font-size;
+        padding: px2rem(38) 0 px2rem(42);
+        > a {
+          font-weight: bold;
+          color: $--primay-color;
+          text-decoration: none;
+
+        }
+        .issue-time {
+          color: $--gray-color;
+        }
+      }
+      @include one-line (horizontal, 100%, after) {
+        bottom: 0;
+        left: 0;
+        background-color: $--border-color;
+      }
+    }
+  }
+}

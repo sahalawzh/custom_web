@@ -1,0 +1,90 @@
+.page-consumable-detail {
+  position: relative;
+  padding-bottom: px2rem(100);
+  .consumable-main {
+    padding: px2rem(34) px2rem(55);
+    .consumable-img-1 {
+      width: 100%;
+      height: px2rem(416); 
+    }
+    h4 {
+      font-size: $--md-font-size;
+      color: $--main-color;
+      padding: px2rem(26) 0 px2rem(16);
+    }
+    .parameter-table {
+      &__tr {
+        position: relative;
+        height: px2rem(66);
+        .table-icon {
+          width: px2rem(30);
+          height: px2rem(30);
+          margin-right: px2rem(8);
+        }
+        .td {
+          position: relative;
+          height: 100%;
+          &:not(:first-child) {
+            @include one-line (vertical, 100%, after) {
+              top: 0;
+              left: 0;
+              background-color: $--border-color;
+            }
+          }
+          &:nth-child(1) {
+            width: 43%;
+          }
+          &:nth-child(2) {
+            flex: 1;
+            padding-left: px2rem(20);
+          }
+          &-label {
+            color: #787878;
+            font-size: px2rem(22);
+          }
+          .color-value {
+            width: px2rem(40);
+            height: px2rem(40);
+            display: inline-block;
+            background-color: red;
+          }
+          &-value {
+            font-size: px2rem(22);
+            color: #0A0A0A;
+            margin-left: px2rem(24);
+            &-xs {
+              font-size: 10px;
+            }
+          }
+        }
+        &--row {
+          padding: px2rem(14) 0 px2rem(16);
+          height: auto;
+          .table-icon {
+            position: absolute;
+            left: 0;
+            top: px2rem(14);
+          }
+          .row-value {
+            padding-left: px2rem(38);
+            &__title {
+              font-size: px2rem(22);
+              color: #787878;
+              margin-bottom: px2rem(4);
+            }
+            &__value {
+              font-size: px2rem(22);
+              color: #0A0A0A;
+              line-height: px2rem(40);
+            }
+          }
+        }
+        @include one-line (horizontal) {
+          top: 0;
+          left: 0;
+          background-color: $--border-color;
+        }
+      }
+    }
+  }
+}

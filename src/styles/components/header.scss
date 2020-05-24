@@ -1,0 +1,59 @@
+.header-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  background-color: $--white-color;
+  .header-main {
+    padding: 0 px2rem(40) 0 px2rem(15);
+    height: px2rem(90);
+    .logo {
+      width: px2rem(270);
+      height: px2rem(78);
+    }
+    .expand-box {
+      width: px2rem(30);
+      &__item {
+        width: px2rem(30);
+        height: px2rem(3);
+        border-radius: px2rem(2);
+        background-color: $--primay-color;
+        &:not(:last-child) {
+          margin-bottom: px2rem(8);
+        }
+      }
+    }
+  }
+  .expand-enter-active, .expand-leave-active {
+    transition: all 0.1s;
+  }
+  .expand-enter, .expand-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+  .menu-main {
+    position: relative;
+    width: 100%;
+    .menu-item {
+      position: relative;
+      height: px2rem(90);
+      padding: 0 px2rem(40) 0 px2rem(30);
+      .arrow {
+        width: px2rem(16);
+        height: px2rem(16);
+        border-top: px2rem(3) solid $--light-gray-color;
+        border-left: px2rem(3) solid $--light-gray-color;
+        transform: rotate(-45deg);
+      }
+      .menu-name {
+        color: $--default-color;
+        font-size: $--sm-font-size;
+      }
+      @include one-line (horizontal) {
+        top: 0;
+        left: 0;
+        background-color: $--border-color;
+      }
+    }
+  }
+}

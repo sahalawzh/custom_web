@@ -1,0 +1,27 @@
+.page-case-detail {
+  background-color: #F4F4F4;
+  .case-main {
+    background-color: $--white-color;
+    padding: px2rem(40) px2rem(52);
+    .title {
+      color: $--main-color;
+      font-size: $--md-font-size;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: px2rem(28);
+    }
+    p {
+      font-size: $--sm-font-size;
+      color: $--main-color;
+      line-height: px2rem(42);
+      text-align: justify;
+    }
+  }
+  .case-recommend {
+    h4 {
+      padding: px2rem(30) px2rem(30) px2rem(16);
+      font-size: $--sm-font-size;
+      color: $--main-color;
+    }
+  }
+}

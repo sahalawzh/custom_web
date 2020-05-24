@@ -1,0 +1,41 @@
+.case-list {
+  padding: px2rem(26) px2rem(26) px2rem(100);
+  flex-wrap: wrap;
+  &__item {
+    margin-bottom: px2rem(27);
+    box-shadow: 0 0 px2rem(10) 0 rgba(10,2,5,0.1);
+    width: 47.5%;
+    margin-bottom: px2rem(27);
+    .case-img {
+      width: 100%;
+      height: px2rem(548);
+    }
+    .item-info {
+      height: px2rem(246);
+      padding: px2rem(22) px2rem(24) px2rem(12);
+      box-sizing: border-box;
+      .title {
+        @include ellipsis(1);
+        font-size: $--sm-font-size;
+        font-size: 500;
+        margin-bottom: px2rem(8);
+      }
+      > ul li {
+        position: relative;
+        font-size: px2rem(22);
+        margin-top: px2rem(8);
+        color: $--main-color;
+        padding-left: px2rem(102);
+        > span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: $--gray-color;
+        }
+      }
+    }
+    &:nth-child(2n - 1) {
+      margin-right: px2rem(28);
+    }
+  }
+}

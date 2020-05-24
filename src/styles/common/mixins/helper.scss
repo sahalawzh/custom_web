@@ -1,22 +1,14 @@
-@import '../mixins/ellipsis.scss';
-
-@each $key, $val in (l1, 1), (l2, 2) {
-  .lw-ellipsis-#{$key} {
-    @include ellipsis($val)
-  }
-}
-
 @mixin one-line-base($direction, $size){
   content: '';
   position: absolute;
   @if $direction == vertical {
     height: $size;
     width: 1px;
-    // transform: scale(0.5, 1);
+    transform: scale(0.5, 1);
   } @else {
     width: $size;
     height: 1px;
-    // transform: scale(1, 0.5);
+    transform: scale(1, 0.5);
   }
 }
 /* 1px线 */

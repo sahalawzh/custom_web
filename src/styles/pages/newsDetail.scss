@@ -1,0 +1,52 @@
+.page-new-detail {
+  position: relative;
+  padding: px2rem(90) 0 px2rem(100);
+  .new-detail {
+    padding: px2rem(34) px2rem(26) 0;
+    .title {
+      color: $--main-color;
+      font-size: $--lg-font-size;
+      font-weight: bold;
+      @include ellipsis(2)
+    }
+    .sub-title {
+      color: $--main-color;
+      font-size: $--base-font-size;
+      padding-top: px2rem(10);
+    }
+    .issue-time {
+      font-style: $--sm-font-size;
+      color: #999;
+      padding: px2rem(14) 0;
+    }
+    .contents {
+      color: $--main-color;
+      font-size: $--base-font-size;
+      line-height: px2rem(44);
+    }
+  }
+  .context-box {
+    padding: px2rem(60) px2rem(26);
+    .context-item {
+      &__tag {
+        width: px2rem(108);
+        height: px2rem(36);
+        border-radius: px2rem(2);
+        background-color: rgba($color: $--primay-color, $alpha: 1.0);
+        color: $--white-color;
+        text-align: center;
+        font-style: $--sm-font-size;
+        line-height: px2rem(36);
+        margin-right: px2rem(30);
+      }
+      > a {
+        color: $--light-gray-color;
+        font-style: $--sm-font-size;
+        text-decoration: none;
+      }
+      & + .context-item {
+        margin-top: px2rem(20);
+      }
+    }
+  }
+}

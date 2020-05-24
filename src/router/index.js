@@ -2,8 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Index from 'pages/index'
-import Home from 'component/Home'
-import About from 'component/About'
+import Inform from 'pages/inform'
+import Online from 'pages/online'
+import ConsumableDetail from 'pages/consumableDetail'
+import CaseDetail from 'pages/caseDetail'
+import CaseList from 'pages/caseList'
+import NewsDetail from 'pages/newsDetail'
+import NewsList from 'pages/newsList'
 
 Vue.use(Router);
 
@@ -11,7 +16,12 @@ export default new Router({
   routes: [
     { path: "/", redirect: "/index" },
     { path: "/index", component: Index },
-    { path: "/home", component: Home },
-    { path: "/about", component: About }
+    { path: "/inform", component: Inform },
+    { path: "/online", component: Online },
+    { path: "/consumableDetail", component: ConsumableDetail },
+    { path: "/caseDetail", component: CaseDetail },
+    { path: "/caseList", component: CaseList },
+    { path: "/newsDetail", component: NewsDetail },
+    { path: "/newsList", component: NewsList }
   ]
 })
