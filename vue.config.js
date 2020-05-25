@@ -89,7 +89,13 @@ module.exports = {
    port: 8086,
    https: false,
    hotOnly: false,
-   proxy: null, // 设置代理
+   proxy: {
+    '': {
+      target: 'https://zxdzapi.gdlwzn.com:3000',
+      changeOrigin: true,
+      secure: false
+    }
+   }, // 设置代理
    before: app => {}
   },
   // 第三方插件配置
