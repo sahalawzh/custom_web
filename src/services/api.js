@@ -26,7 +26,9 @@ export const API = {
   // 新闻列表
 	GET_NEWS_LIST: `${BASE_URL}/news/listNews`,
   // 新闻详情
-	GET_NEWS_DETAIL: `${BASE_URL}/news/detail`
+	GET_NEWS_DETAIL: `${BASE_URL}/news/detail`,
+  // 首页配置数据
+	GET_CONFIG_DATA: `${BASE_URL}/config/selectConfigByAppType`
 }
 
 export const getMaterialIndexList = function (data, config) {
@@ -37,14 +39,14 @@ export const getMaterialBuyList = function (data, config) {
 }
 export const getMaterialInfo = function (data, config) {
   const url = API.GET_METERIAL_INFO.replace(/materialId/g, data.materialId)
-	return http.get(url, data, config)
+	return http.get(url, config)
 }
 export const getTechnologyList = function (data, config) {
   return http.get(API.GET_TECHBOLOGY_LIST, data, config)
 }
 export const getTechnologyInfo = function (data, config) {
   const url = API.GET_TECHBOLOGY_INFO.replace(/technologyId/g, data.technologyId)
-	return http.get(url, data, config)
+	return http.get(url, config)
 }
 export const getCaseListColumn = function (data, config) {
   return http.get(API.GET_CASE_LIST_COLUMN, data, config)
@@ -68,4 +70,7 @@ export const getNewsList = function (data, config) {
 }
 export const getNewsDetail = function (data, config) {
   return http.get(API.GET_NEWS_DETAIL, data, config)
+}
+export const getConfigData = function (data, config) {
+  return http.get(API.GET_CONFIG_DATA, data, config)
 }

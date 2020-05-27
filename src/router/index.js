@@ -10,8 +10,11 @@ import CaseList from 'pages/caseList'
 import NewsDetail from 'pages/newsDetail'
 import NewsList from 'pages/newsList'
 
-Vue.use(Router);
-
+Vue.use(Router)
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 export default new Router({
   routes: [
     { path: "/", redirect: "/index" },

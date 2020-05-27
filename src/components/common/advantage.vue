@@ -1,5 +1,5 @@
 <template>
-  <div class="advantage-list lw-flex is-align-middle is-justify-space-around">
+  <!-- <div class="advantage-list lw-flex is-align-middle is-justify-space-around">
     <div class="advantage-list__item">
       <div>
         <img src="../../assets/index/group_1.png" alt="">
@@ -18,9 +18,27 @@
       </div>
       <div>速度最快</div>
     </div>
+  </div> -->
+  <div class="advactage-container">
+    <img :src="image" alt="">
   </div>
 </template>
+<script>
+export default {
+  props: {
+    image: String
+  }
+}
+</script>
+
 <style lang="scss" scoped>
+.advactage-container {
+  padding: px2rem(66) px2rem(66) px2rem(70);
+  img {
+    width: 100%;
+    height: px2rem(103);
+  }
+}
 .advantage-list {
   padding: px2rem(66) 0 px2rem(70);
   &__item {

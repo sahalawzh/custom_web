@@ -1,12 +1,20 @@
 <template>
   <div class="part-bottom">
-    <img src="../../assets/common/bottom_bg1.png" class="bottom-bg" alt="">
-    <div class="lw-flex is-align-middle is-justify-center part-bottom__content">
+    <img :src="image || '../../assets/common/bottom_bg1.png'" class="bottom-bg" alt="">
+    <!-- <div class="lw-flex is-align-middle is-justify-center part-bottom__content">
       <div class="part-bottom__content-title">想做就做，由此开始</div>
       <div class="part-bottom__content-tip">已为全球客户提供<span>2000</span>次服务</div>
-    </div>
+    </div> -->
   </div>
 </template>
+<script>
+export default {
+  props: {
+    image: String
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .part-bottom {
   position: relative;

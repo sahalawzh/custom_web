@@ -2,64 +2,57 @@
   <div class="page-online">
     <lwzx-header></lwzx-header>
 
-    <div class="lw-flex is-align-middle tip-box">
-      <img src="../assets/common/lwzx-img.png" class="tip-icon">
-      <span>兰湾小智提醒您：在线打印请用电脑浏览器</span>
+    <div class="lw-flex is-align-middle tip-box" v-if="homeTop">
+      <img src="../assets/common/icon_tip.png" class="tip-icon">
+      <span>{{ homeTop.tips.configValue }}</span>
       <div class="fork"></div>
     </div>
 
-    <div class="online-header">
-      <img src="../assets/index/group_1.png" class="online-header__img" alt="">
+    <div class="online-header" v-if="homeTop">
+      <img v-if="homeTop.image" :src="homeTop.image.configValue" class="online-header__img" alt="">
     </div>
 
     <div class="part-consumable">
       <div class="consumable-title">3D打印耗材</div>
       
-      <consumable></consumable>
+      <consumable :list="materialList"></consumable>
     </div>
 
-    <div class="part-craft">
+    <div class="part-craft" v-if="technologyDetail">
       <div class="craft-title">3D打印工艺</div>
       <div class="craft-img-lg">
-        <img src="../assets/index/group_1.png">
+        <img :src="technologyDetail.coverUrl">
       </div>
       <div class="craft-article">
-        <h4 class="craft-article__title">SLM成型技术的工艺过程</h4>
-        <p>SLM技术的成型原理，在基板上用刮刀铺一层金属粉末，然后用激光束在扫描振镜的控制下按照一定的路径快速照射粉末，使其发生熔化，凝固，形成冶金熔覆层，然后将基板下降与单层沉积厚度相同的高度，在铺一层粉末进行激光扫描加工，重复这样的过程直至整个零件成型结束。
-</p>
+        <h4 class="craft-article__title">{{ technologyDetail.title }}</h4>
+        <p>{{ technologyDetail.description }}</p>
         <div class="craft-list lw-flex">
-          <div class="craft-list__item"></div>
-          <div class="craft-list__item"></div>
-          <div class="craft-list__item"></div>
-          <div class="craft-list__item"></div>
-          <div class="craft-list__item"></div>
-          <div class="craft-list__item"></div>
+          <div class="craft-list__item"
+            @click="handleToCradfDetail(item.id, index)"
+            :class="item.isDefault === 0 ? 'active' : ''"
+            v-for="(item, index) in technologyList"
+            :key="item.id">
+            <img :src="item.coverUrl" alt="">
+            <div class="craft-list__item--name">{{ item.title }}</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="part-business">
-      <div class="business-title">行业案例</div>
-      <p>主营新能源汽车零配件、汽车改装、个性化定制、消费类电子、
-      家电产品、电器开发、医疗器具、康复护具、功能性鞋垫、
-      定制眼镜、夹具、礼品、工艺品等</p>
-      <div class="business-tel">咨询电话：0757-85500509、0512-68796096</div>
+    <div class="part-business" v-if="homeCase">
+      <div class="business-title">{{ homeCase.title.configValue }}</div>
+      <p>{{ homeCase.content.configValue }}</p>
+      <div class="business-tel">{{ homeCase.phone.configValue }}</div>
       <div class="business-list lw-flex">
-        <div class="business-list__item">
-          <img src="../assets/index/group_1.png" class="business-list__item--bg">
-        </div>
-        <div class="business-list__item">
-          <img src="../assets/index/group_1.png" class="business-list__item--bg">
-        </div>
-        <div class="business-list__item">
-          <img src="../assets/index/group_1.png" class="business-list__item--bg">
+        <div class="business-list__item" v-for="item in caseList" @click="handleToCase(item.classId)" :key="item.classId">
+          <img v-if="item.image" :src="item.image" class="business-list__item--bg">
         </div>
       </div>
       
-      <advantage></advantage>
+      <advantage v-if="homeButtom" :image="homeButtom.image.configValue"></advantage>
     </div>
 
-    <page-bottom></page-bottom>
+    <page-bottom v-if="adv" :image="adv.image.configValue"></page-bottom>
 
     <lwzx-footer></lwzx-footer>
 
@@ -73,6 +66,8 @@ import LWZXFooter from '@/components/Footer'
 import pageBottom from '@/components/common/pageBottom'
 import advantage from '@/components/common/advantage'
 import consumable from '@/components/common/consumable'
+import { getCaseListColumn, getMaterialIndexList, getTechnologyList, getTechnologyInfo, getConfigData } from '@/services/api'
+import axios from 'axios'
 export default {
   components: {
     'lwzx-header': LWZXHeader,
@@ -81,6 +76,88 @@ export default {
     'page-bottom': pageBottom,
     advantage,
     consumable
+  },
+  data () {
+    return {
+      caseList: [],
+      materialList: [],
+      technologyList: [],
+      configData: {},
+      technologyDetail: {}
+    }
+  },
+  computed: {
+    adv () {
+      return this.configData.buttom
+    },
+    homeButtom () {
+      return this.configData.homeButtom
+    },
+    homeTop () {
+      return this.configData.homeTop
+    },
+    homeCase () {
+      return this.configData.homeCase
+    }
+  },
+  methods: {
+    async getTechnologyDetail (technologyId) {
+      try {
+        const opts = {
+          technologyId
+        }
+        const { data } = await getTechnologyInfo(opts)
+        this.technologyDetail = data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    handleToCradfDetail (id, index) {
+      this.technologyList.forEach(item => {
+        item.isDefault = 1
+      })
+      this.technologyList[index].isDefault = 0
+      this.getTechnologyDetail(id)
+    },
+    handleToCase (classId) {
+      this.$router.push({path: '/caseList', query: { classId }})
+    }
+  },
+  created () {
+    const opts = {
+      appType: 0
+    }
+    this.$loading('加载中')
+    axios.all([getCaseListColumn(), getMaterialIndexList(), getTechnologyList(), getConfigData(opts)]).then(res => {
+      this.$loading.close()
+      const [caseData, materialData, technologyData, configData ] = res
+      this.caseList = caseData.data
+      this.materialList = materialData.data
+      technologyData.data.filter(item => {
+        if (item.isDefault === 0) {
+          this.getTechnologyDetail(item.id)
+        }
+      })
+      this.technologyList = technologyData.data
+      let configMap = {}
+      for (let key in configData.data) {
+        let moduleData = configData.data[key]
+        let subMap = {}
+        moduleData.length && moduleData.forEach(item => {
+          subMap = {
+            ...subMap,
+            ...item
+          }
+        })
+        configMap = {
+          ...configMap,
+          [key]: subMap
+        }
+      }
+      this.configData = configMap
+    }).catch(err => {
+      console.log(err)
+    })
   },
   beforeMount () {
     document.title = '在线打印'

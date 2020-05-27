@@ -11,7 +11,7 @@
       height: px2rem(548);
     }
     .item-info {
-      height: px2rem(246);
+      height: px2rem(256);
       padding: px2rem(22) px2rem(24) px2rem(12);
       box-sizing: border-box;
       .title {
@@ -26,6 +26,7 @@
         margin-top: px2rem(8);
         color: $--main-color;
         padding-left: px2rem(102);
+        @include ellipsis(1);
         > span {
           position: absolute;
           left: 0;
