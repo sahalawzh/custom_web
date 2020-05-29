@@ -6,10 +6,18 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 
+import { mapActions } from 'vuex'
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    ...mapActions({
+      getConfigInfoData: 'getConfigInfoData'
+    })
+  },
+  created () {
+    this.getConfigInfoData()
+  }
 }
 </script>
 

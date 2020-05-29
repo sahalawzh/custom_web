@@ -9,22 +9,37 @@ import CaseDetail from 'pages/caseDetail'
 import CaseList from 'pages/caseList'
 import NewsDetail from 'pages/newsDetail'
 import NewsList from 'pages/newsList'
+import AboutUs from 'pages/aboutUs'
 
 Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
-export default new Router({
+const router = new Router({
   routes: [
     { path: "/", redirect: "/index" },
-    { path: "/index", component: Index },
-    { path: "/inform", component: Inform },
-    { path: "/online", component: Online },
-    { path: "/consumableDetail", component: ConsumableDetail },
-    { path: "/caseDetail", component: CaseDetail },
-    { path: "/caseList", component: CaseList },
-    { path: "/newsDetail", component: NewsDetail },
-    { path: "/newsList", component: NewsList }
+    { path: "/index", component: Index, meta: { title: '在线打印' } },
+    { path: "/inform", component: Inform, meta: { title: '兰湾足行' } },
+    { path: "/online", component: Online, meta: { title: '在线打印' } },
+    { path: "/consumableDetail", component: ConsumableDetail, meta: { title: '材料详情' } },
+    { path: "/caseDetail", component: CaseDetail, meta: { title: '案例详情' } },
+    { path: "/caseList", component: CaseList, meta: { title: '案例列表' } },
+    { path: "/newsDetail", component: NewsDetail, meta: { title: '新闻详情' } },
+    { path: "/newsList", component: NewsList, meta: { title: '资讯中心' } },
+    { path: "/aboutUs", component: AboutUs, meta: { title: '联系我们' } }
   ]
 })
+
+router.beforeEach((to, from, next) => {//beforeEach是router的钩子函数，在进入路由前执行
+
+  if (to.meta.title) {//判断是否有标题
+
+    document.title = to.meta.title
+
+  }
+
+  next()//执行进入路由，如果不写就不会进入目标页
+
+})
+export default router

@@ -3,7 +3,7 @@
     <lwzx-header></lwzx-header>
 
     <div class="new-container">
-      <h2>咨询中心</h2>
+      <h2>资讯中心</h2>
       <div class="new-item" v-for="item in newsList" :key="item.id" @click="handleToDetail(item.id)">
         <div>
           <img :src="item.mainImg" class="new-img" alt="">
@@ -12,7 +12,7 @@
         <div class="sub-title">{{ item.subtitle }}</div>
         <p>{{ item.synopsis }}</p>
         <div class="lw-flex is-align-middle is-justify-space-between new-item__ft">
-          <div>阅读全文>></div>
+          <div class="read-text">阅读全文>></div>
           <div class="issue-time">{{ item.source }} · {{ getFormatTime(item.createTime) }}</div>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default {
   data () {
     return {
       start: 1,
-      limits: 5,
+      limits: 1,
       total: 0,
       newsList: []
     }
@@ -86,9 +86,6 @@ export default {
         this.$loading.close()
       }
     }
-  },
-  beforeMount () {
-    document.title = '咨询中心'
   },
   created () {
     this.getNewsList()

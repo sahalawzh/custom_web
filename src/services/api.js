@@ -28,9 +28,19 @@ export const API = {
   // 新闻详情
 	GET_NEWS_DETAIL: `${BASE_URL}/news/detail`,
   // 首页配置数据
-	GET_CONFIG_DATA: `${BASE_URL}/config/selectConfigByAppType`
+	GET_CONFIG_DATA: `${BASE_URL}/config/selectConfigByAppType`,
+  // 保密协定
+	GET_CONFIDENTIALITY_AGREEMENT: `${BASE_URL}/page/confidentialityAgreement`,
+  // 关于我们我们
+	GET_ABOUT_US: `${BASE_URL}/page/aboutUs`
 }
 
+export const getAboutUs = function (data, config) {
+	return http.get(API.GET_ABOUT_US, data, config)
+}
+export const getConfidentialityAgreement = function (data, config) {
+	return http.get(API.GET_CONFIDENTIALITY_AGREEMENT, data, config)
+}
 export const getMaterialIndexList = function (data, config) {
 	return http.get(API.GET_METERIAL_INDEX_LIST, data, config)
 }

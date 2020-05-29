@@ -20,13 +20,21 @@
     </div>
   </div> -->
   <div class="advactage-container">
-    <img :src="image" alt="">
+    <img :src="advImg" alt="">
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-  props: {
-    image: String
+  computed: {
+    ...mapState({
+      configData: 'configData'
+    }),
+    advImg () {
+      if (this.configData && this.configData.homeButtom) {
+        return this.configData.homeButtom.image.configValue
+      }
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="part-bottom">
-    <img :src="image || '../../assets/common/bottom_bg1.png'" class="bottom-bg" alt="">
+    <img :src="bannerImg" class="bottom-bg" alt="">
     <!-- <div class="lw-flex is-align-middle is-justify-center part-bottom__content">
       <div class="part-bottom__content-title">想做就做，由此开始</div>
       <div class="part-bottom__content-tip">已为全球客户提供<span>2000</span>次服务</div>
@@ -8,9 +8,17 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-  props: {
-    image: String
+  computed: {
+    ...mapState({
+      configData: 'configData'
+    }),
+    bannerImg () {
+      if (this.configData && this.configData.buttom) {
+        return this.configData.buttom.image.configValue
+      }
+    }
   }
 }
 </script>

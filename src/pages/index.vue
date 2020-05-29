@@ -28,9 +28,6 @@ export default {
   data () {
     return {
     }
-  },
-  beforeMount () {
-    document.title = '在线打印'
   }
 }
 </script>

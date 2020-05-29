@@ -76,9 +76,6 @@ export default {
     const { id } = this.$route.query
     this.id = id
     this.getNewsDetail()
-  },
-  beforeMount () {
-    document.title = '新闻详情'
   }
 }
 </script>

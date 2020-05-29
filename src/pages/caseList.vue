@@ -57,9 +57,6 @@ export default {
         this.$loading.close()
       }
     }
-  },
-  beforeMount () {
-    document.title = '案例列表'
   }
 }
 </script>

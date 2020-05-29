@@ -10,65 +10,65 @@
       <div class="parameter-table">
         <div class="parameter-table__tr lw-flex is-align-middle">
           <div class="td lw-flex is-align-middle">
-            <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
-            <span class="td-label">颜色</span>
+            <img src="../assets/consumable/ico_1.png" class="table-icon" alt="">
+            <span class="td-label">工艺</span>
             <span class="td-value">
               <span class="color-value"></span>
             </span>
           </div>
           <div class="td lw-flex is-align-middle">
-            <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+            <img src="../assets/consumable/ico_2.png" class="table-icon" alt="">
             <span class="td-label">成形尺寸</span>
             <span class="td-value td-value-xs">200*300*400mm</span>
           </div>
         </div>
         <div class="parameter-table__tr lw-flex is-align-middle">
           <div class="td lw-flex is-align-middle">
-            <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+            <img src="../assets/consumable/ico_3.png" class="table-icon" alt="">
             <span class="td-label">熔点</span>
             <span class="td-value">金属类</span>
           </div>
           <div class="td lw-flex is-align-middle">
-            <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+            <img src="../assets/consumable/ico_4.png" class="table-icon" alt="">
             <span class="td-label">材料种类</span>
             <span class="td-value">{{ materialDetail.cateName }}</span>
           </div>
         </div>
         <div class="parameter-table__tr lw-flex is-align-middle">
           <div class="td lw-flex is-align-middle">
-            <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+            <img src="../assets/consumable/ico_5.png" class="table-icon" alt="">
             <span class="td-label">精度</span>
             <span class="td-value">{{ materialDetail.precision }}mm</span>
           </div>
           <div class="td lw-flex is-align-middle">
-            <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
-            <span class="td-label">交付周期</span>
+            <img src="../assets/consumable/ico_6.png" class="table-icon" alt="">
+            <span class="td-label">后处理</span>
             <span class="td-value">5 个工作日</span>
           </div>
         </div>
         <div class="parameter-table__tr parameter-table__tr--row lw-flex">
-          <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+          <img src="../assets/consumable/ico_7.png" class="table-icon" alt="">
           <div class="row-value">
             <div class="row-value__title">特点</div>
             <div class="row-value__value">{{ materialDetail.characteristic }}</div>
           </div>
         </div>
         <div class="parameter-table__tr parameter-table__tr--row lw-flex">
-          <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+          <img src="../assets/consumable/ico_8.png" class="table-icon" alt="">
           <div class="row-value">
             <div class="row-value__title">适用做</div>
             <div class="row-value__value">{{ materialDetail.fit }}</div>
           </div>
         </div>
         <div class="parameter-table__tr parameter-table__tr--row lw-flex">
-          <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+          <img src="../assets/consumable/ico_9.png" class="table-icon" alt="">
           <div class="row-value">
             <div class="row-value__title">不适合做</div>
             <div class="row-value__value">{{ materialDetail.inferior }}</div>
           </div>
         </div>
         <div class="parameter-table__tr parameter-table__tr--row lw-flex">
-          <img src="../assets/common/lwzx-img.png" class="table-icon" alt="">
+          <img src="../assets/consumable/ico_10.png" class="table-icon" alt="">
           <div class="row-value">
             <div class="row-value__title">介绍</div>
             <div class="row-value__value">{{ materialDetail.description }}</div>
@@ -85,6 +85,8 @@
 
     <advantage></advantage>
 
+    <page-bottom></page-bottom>
+  
     <lwzx-footer></lwzx-footer>
 
     <lwzx-concat></lwzx-concat>
@@ -95,12 +97,14 @@ import LWZXConcat from '@/components/Concat'
 import LWZXFooter from '@/components/Footer'
 import advantage from '@/components/common/advantage'
 import consumable from '@/components/common/consumable'
+import pageBottom from '@/components/common/pageBottom'
 import { getMaterialInfo } from '@/services/api'
 
 export default {
   components: {
     'lwzx-concat': LWZXConcat,
     'lwzx-footer': LWZXFooter,
+    'page-bottom': pageBottom,
     advantage,
     consumable
   },
@@ -125,9 +129,6 @@ export default {
       console.log(error)
       this.$loading.close()
     }
-  },
-  beforeMount () {
-    document.title = '材料详情'
   }
 }
 </script>

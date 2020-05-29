@@ -42,6 +42,10 @@
           text-decoration: none;
 
         }
+        .read-text {
+          color: $--primay-color;
+          font-weight: bold;
+        }
         .issue-time {
           color: $--gray-color;
         }

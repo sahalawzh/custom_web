@@ -49,14 +49,54 @@
         </div>
       </div>
       
-      <advantage v-if="homeButtom" :image="homeButtom.image.configValue"></advantage>
+      <advantage></advantage>
     </div>
 
-    <page-bottom v-if="adv" :image="adv.image.configValue"></page-bottom>
+    <div class="printer-box" @click="printerVisible = true">
+      <img src="../assets/online/ico_print.png">
+    </div>
+
+    <page-bottom></page-bottom>
 
     <lwzx-footer></lwzx-footer>
 
     <lwzx-concat></lwzx-concat>
+
+    <lw-popup
+      :closeOnClickModal="true"
+      v-model="printerVisible"
+      v-if="printerInfo"
+      :modal-append-to-body="true"
+      :append-to-body="true"
+      :lockScroll="true">
+      <div class="printer-container">
+        <div>
+          <img src="../assets/online/printer_hd.png" class="printer-hd" alt="">
+        </div>
+        <p class="unopen-tip">移动端暂未开放在线下单功能</p>
+        <div class="content-box">
+          <div class="title">您可以</div>
+          <div class="lw-flex content-box__li">
+            <img class="ico_num" src="../assets/online/1.png" alt="">
+            <div>前往PC端在线下单</div>
+          </div>
+          <div class="lw-flex content-box__li">
+            <img class="ico_num" src="../assets/online/2.png" alt="">
+            <div>打印文件及个人/公司信息发送至<span class="light-text">{{printerInfo.email.configValue}}</span>专业专业团队为您服务</div>
+          </div>
+          <div class="lw-flex content-box__li">
+            <img class="ico_num" src="../assets/online/3.png" alt="">
+            <div class="qrcode-box">
+              <div>
+                <img :src="printerInfo.wechatImage.configValue" alt="">
+              </div>
+              <p>客服微信</p>
+              <p>通关暗号：我要打印</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </lw-popup>
   </div>
 </template>
 <script>
@@ -66,14 +106,17 @@ import LWZXFooter from '@/components/Footer'
 import pageBottom from '@/components/common/pageBottom'
 import advantage from '@/components/common/advantage'
 import consumable from '@/components/common/consumable'
-import { getCaseListColumn, getMaterialIndexList, getTechnologyList, getTechnologyInfo, getConfigData } from '@/services/api'
+import { getCaseListColumn, getMaterialIndexList, getTechnologyList, getTechnologyInfo } from '@/services/api'
 import axios from 'axios'
+import { mapState } from 'vuex'
+import Popup from '@/components/common/popup/main'
 export default {
   components: {
     'lwzx-header': LWZXHeader,
     'lwzx-concat': LWZXConcat,
     'lwzx-footer': LWZXFooter,
     'page-bottom': pageBottom,
+    'lw-popup': Popup,
     advantage,
     consumable
   },
@@ -82,22 +125,24 @@ export default {
       caseList: [],
       materialList: [],
       technologyList: [],
-      configData: {},
-      technologyDetail: {}
+      technologyDetail: {},
+      printerVisible: false
     }
   },
   computed: {
-    adv () {
-      return this.configData.buttom
-    },
-    homeButtom () {
-      return this.configData.homeButtom
-    },
+    ...mapState({
+      configData: 'configData'
+    }),
     homeTop () {
       return this.configData.homeTop
     },
     homeCase () {
       return this.configData.homeCase
+    },
+    printerInfo () {
+      if (this.configData && this.configData.print) {
+        return this.configData.print
+      }
     }
   },
   methods: {
@@ -124,13 +169,10 @@ export default {
     }
   },
   created () {
-    const opts = {
-      appType: 0
-    }
     this.$loading('加载中')
-    axios.all([getCaseListColumn(), getMaterialIndexList(), getTechnologyList(), getConfigData(opts)]).then(res => {
+    axios.all([getCaseListColumn(), getMaterialIndexList(), getTechnologyList()]).then(res => {
       this.$loading.close()
-      const [caseData, materialData, technologyData, configData ] = res
+      const [caseData, materialData, technologyData ] = res
       this.caseList = caseData.data
       this.materialList = materialData.data
       technologyData.data.filter(item => {
@@ -139,28 +181,10 @@ export default {
         }
       })
       this.technologyList = technologyData.data
-      let configMap = {}
-      for (let key in configData.data) {
-        let moduleData = configData.data[key]
-        let subMap = {}
-        moduleData.length && moduleData.forEach(item => {
-          subMap = {
-            ...subMap,
-            ...item
-          }
-        })
-        configMap = {
-          ...configMap,
-          [key]: subMap
-        }
-      }
-      this.configData = configMap
     }).catch(err => {
       console.log(err)
+      this.$loading.close()
     })
-  },
-  beforeMount () {
-    document.title = '在线打印'
   }
 }
 </script>

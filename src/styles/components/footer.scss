@@ -46,5 +46,11 @@
       color: rgba($color: $--white-color, $alpha: 0.65);
     }
   }
-  
+}
+.agree-box {
+  padding: px2rem(38) px2rem(44) px2rem(50) px2rem(38);
+  .agree-content {
+    height: px2rem(900);
+    overflow: hidden;
+  }
 }

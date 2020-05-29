@@ -14,9 +14,6 @@ export default {
   components: {
     'lwzx-header': LWZXHeader,
     'lwzx-concat': LWZXConcat
-  },
-  beforeMount () {
-    document.title = '兰湾足行'
   }
 }
 </script>

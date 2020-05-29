@@ -46,9 +46,6 @@ export default {
       console.log(err)
       this.$loading.close()
     })
-  },
-  beforeMount () {
-    document.title = '案例详情'
   }
 }
 </script>

@@ -1,16 +1,16 @@
 <!--分页-->
 <template>
-	<div class="pagination" v-if="totalPage>1">
+	<div class="lw-pagination" v-if="totalPage>1">
 		<span v-if="!small" class="total">共{{totalCount}}条记录<!--  第{{currentPage}}/{{totalPage}}页--></span>
 		<ul class="paging lw-flex">
 			<li class="prev" v-show="currentPage>1" @click="currentPage<=1?'':turn(currentPage-1)">上一页</li>
 
 			<li v-for="i in showPageBtn"
 				:key="i" class="num"
-				:class="{'active':i==currentPage,'num iconfont icon-more':i==='-'||i==='+','icon-d-arrow-left':toPrev&&i==='-','icon-d-arrow-right':toNext&&i==='+'}"
+				:class="{'active':i==currentPage,'icon-more':i==='-'||i==='+','icon-d-arrow-left':toPrev&&i==='-','icon-d-arrow-right':toNext&&i==='+'}"
 				@mouseenter="i==='-'?toPrev=true:i==='+'?toNext=true:''"
 				@mouseleave="i==='-'?toPrev=false:i==='+'?toNext=false:''"
-				@click="i==='-'?turn(currentPage-1):i==='+'? turn(currentPage+1):turn(i)">{{i>0?i:''}}</li>
+				@click="i==='-'?turn(currentPage-1):i==='+'? turn(currentPage+1):turn(i)">{{i>0?i:'...'}}</li>
 			<!--<li v-else-if="i==='-'" class="num iconfont icon-more" :class="{'icon-d-arrow-left':toPrev}" @click="turn(currentPage-1)" @mouseenter="toPrev=true" @mouseleave="toPrev=false"></li>
 			<li v-else-if="i==='+'" class="num iconfont icon-more" :class="{'icon-d-arrow-right':toNext}" @click="turn(currentPage+1)" @mouseenter="toNext=true" @mouseleave="toNext=false"></li>
 -->
@@ -72,7 +72,7 @@ export default {
       let pageNum = Number(this.totalPage),
         index = Number(this.currentPage),
         arr = [];
-      if (pageNum <= 9) {
+      if (pageNum <= 7) {
         for (let i = 1; i <= pageNum; i++) {
           arr.push(i);
         }
@@ -84,8 +84,6 @@ export default {
           1,
           2,
           "-",
-          pageNum - 5,
-          pageNum - 4,
           pageNum - 3,
           pageNum - 2,
           pageNum - 1,
@@ -96,8 +94,6 @@ export default {
           1,
           2,
           "-",
-          pageNum - 5,
-          pageNum - 4,
           pageNum - 3,
           pageNum - 2,
           pageNum - 1,
@@ -106,8 +102,6 @@ export default {
       return [
         1,
         "-",
-        index - 2,
-        index - 1,
         index,
         index + 1,
         index + 2,
@@ -150,8 +144,33 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.num {
-  width: px2rem(45);
-  height: px2rem(45);
+.lw-pagination {
+  padding: px2rem(40) 0 px2rem(110);
+  .num {
+    width: px2rem(45);
+    height: px2rem(45);
+    text-align: center;
+    line-height: px2rem(45);
+    color: $--main-color;
+    border-radius: px2rem(4);
+    margin-right: px2rem(15);
+    &:not(.icon-more) {
+      border:1px solid rgba(210,210,210,1);
+    }
+    &.active {
+      background-color: $--primay-color;
+      color: $--white-color;
+      border-color: $--primay-color;
+    }
+  }
+  .next, .prev {
+    width: px2rem(105);
+    height: px2rem(45);
+    text-align: center;
+    line-height: px2rem(45);
+    margin-right: px2rem(15);
+    border:1px solid rgba(210,210,210,1);
+    border-radius: px2rem(4);
+  }
 }
 </style>
