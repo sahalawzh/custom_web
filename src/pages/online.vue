@@ -2,10 +2,10 @@
   <div class="page-online">
     <lwzx-header></lwzx-header>
 
-    <div class="lw-flex is-align-middle tip-box" v-if="homeTop">
+    <div class="lw-flex is-align-middle tip-box" v-if="homeTop && isShowTip">
       <img src="../assets/common/icon_tip.png" class="tip-icon">
       <span>{{ homeTop.tips.configValue }}</span>
-      <div class="fork"></div>
+      <div class="fork" @click="isShowTip = false"></div>
     </div>
 
     <div class="online-header" v-if="homeTop">
@@ -52,7 +52,7 @@
       <advantage></advantage>
     </div>
 
-    <div class="printer-box" @click="printerVisible = true">
+    <div class="printer-box" @click="handleShowPrinter">
       <img src="../assets/online/ico_print.png">
     </div>
 
@@ -62,41 +62,7 @@
 
     <lwzx-concat></lwzx-concat>
 
-    <lw-popup
-      :closeOnClickModal="true"
-      v-model="printerVisible"
-      v-if="printerInfo"
-      :modal-append-to-body="true"
-      :append-to-body="true"
-      :lockScroll="true">
-      <div class="printer-container">
-        <div>
-          <img src="../assets/online/printer_hd.png" class="printer-hd" alt="">
-        </div>
-        <p class="unopen-tip">移动端暂未开放在线下单功能</p>
-        <div class="content-box">
-          <div class="title">您可以</div>
-          <div class="lw-flex content-box__li">
-            <img class="ico_num" src="../assets/online/1.png" alt="">
-            <div>前往PC端在线下单</div>
-          </div>
-          <div class="lw-flex content-box__li">
-            <img class="ico_num" src="../assets/online/2.png" alt="">
-            <div>打印文件及个人/公司信息发送至<span class="light-text">{{printerInfo.email.configValue}}</span>专业专业团队为您服务</div>
-          </div>
-          <div class="lw-flex content-box__li">
-            <img class="ico_num" src="../assets/online/3.png" alt="">
-            <div class="qrcode-box">
-              <div>
-                <img :src="printerInfo.wechatImage.configValue" alt="">
-              </div>
-              <p>客服微信</p>
-              <p>通关暗号：我要打印</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </lw-popup>
+    <online-printer></online-printer>
   </div>
 </template>
 <script>
@@ -108,17 +74,17 @@ import advantage from '@/components/common/advantage'
 import consumable from '@/components/common/consumable'
 import { getCaseListColumn, getMaterialIndexList, getTechnologyList, getTechnologyInfo } from '@/services/api'
 import axios from 'axios'
-import { mapState } from 'vuex'
-import Popup from '@/components/common/popup/main'
+import { mapState, mapMutations } from 'vuex'
+import OnlinePrinter from '@/components/onlinePrinter'
 export default {
   components: {
     'lwzx-header': LWZXHeader,
     'lwzx-concat': LWZXConcat,
     'lwzx-footer': LWZXFooter,
     'page-bottom': pageBottom,
-    'lw-popup': Popup,
     advantage,
-    consumable
+    consumable,
+    OnlinePrinter
   },
   data () {
     return {
@@ -126,12 +92,13 @@ export default {
       materialList: [],
       technologyList: [],
       technologyDetail: {},
-      printerVisible: false
+      isShowTip: true
     }
   },
   computed: {
     ...mapState({
-      configData: 'configData'
+      configData: 'configData',
+      printerVisible: 'printerVisible'
     }),
     homeTop () {
       return this.configData.homeTop
@@ -146,6 +113,21 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      updateKey: 'updateKey'
+    }),
+    onClose () {
+      this.updateKey({
+        key: 'printerVisible',
+        value: false
+      })
+    },
+    handleShowPrinter () {
+      this.updateKey({
+        key: 'printerVisible',
+        value: true
+      })
+    },
     async getTechnologyDetail (technologyId) {
       try {
         const opts = {

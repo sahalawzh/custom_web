@@ -14,6 +14,7 @@
         <img :src="wechatImage" alt="">
       </div>
       <p>客服微信</p>
+      <p>通关暗号:我要打印</p>
     </div>
     <div class="footer-right">
       <div class="footer-title footer-right__title">选择语言</div>

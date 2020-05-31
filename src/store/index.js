@@ -6,7 +6,8 @@ import { getConfigData } from '@/services/api'
 
 export default new Vuex.Store({
   state: {
-    configData: {}
+    configData: {},
+    printerVisible: false
   },
   getters: {
   },

@@ -13,20 +13,20 @@
             <img src="../assets/consumable/ico_1.png" class="table-icon" alt="">
             <span class="td-label">工艺</span>
             <span class="td-value">
-              <span class="color-value"></span>
+              {{ materialDetail.technicsName }}
             </span>
           </div>
           <div class="td lw-flex is-align-middle">
             <img src="../assets/consumable/ico_2.png" class="table-icon" alt="">
             <span class="td-label">成形尺寸</span>
-            <span class="td-value td-value-xs">200*300*400mm</span>
+            <span class="td-value td-value-xs">{{ materialDetail.vsize }}</span>
           </div>
         </div>
         <div class="parameter-table__tr lw-flex is-align-middle">
           <div class="td lw-flex is-align-middle">
             <img src="../assets/consumable/ico_3.png" class="table-icon" alt="">
             <span class="td-label">熔点</span>
-            <span class="td-value">金属类</span>
+            <span class="td-value">{{ materialDetail.density }}</span>
           </div>
           <div class="td lw-flex is-align-middle">
             <img src="../assets/consumable/ico_4.png" class="table-icon" alt="">
@@ -43,7 +43,7 @@
           <div class="td lw-flex is-align-middle">
             <img src="../assets/consumable/ico_6.png" class="table-icon" alt="">
             <span class="td-label">后处理</span>
-            <span class="td-value">5 个工作日</span>
+            <span class="td-value">{{ materialDetail.afterprocessing }}</span>
           </div>
         </div>
         <div class="parameter-table__tr parameter-table__tr--row lw-flex">

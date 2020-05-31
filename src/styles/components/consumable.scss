@@ -28,6 +28,9 @@
     &--bg {
       width: 100%;
       height: 100%;
+      :hover {
+        background-color: $--primay-color;
+      }
     }
     &--name {
       font-size: $--sm-font-size;

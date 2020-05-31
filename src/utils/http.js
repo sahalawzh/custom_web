@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { formatUrlParams } from '@/utils/formatUrlParams'
+
 // import handleErrorStatus from '@/common/utils/handleErrorStatus'
 // 开发环境跨域请求带cookie
 if (process.env.NODE_ENV === 'development') {
@@ -71,9 +72,9 @@ const checkStatus = function (response) {
 const checkCode = function (res) {
   // 错误处理
   if (res.code === -404) {
-    console.log(res)
-    // return handleErrorStatus(res)
+    return handleErrorStatus(res)
   } else {
+    
     return res
   }
 }

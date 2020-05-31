@@ -16,7 +16,7 @@ install(Vue) {
   */
   Vue.prototype.$loading = function(text='正在加载中...', type) {
       if (type == 'close') {
-          _LOADING.component.show = _LOADING.show = false;
+        _LOADING.component.show = _LOADING.show = false;
       } else {
           if (_LOADING.show) {
               return;

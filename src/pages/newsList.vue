@@ -52,7 +52,7 @@ export default {
   data () {
     return {
       start: 1,
-      limits: 1,
+      limits: 5,
       total: 0,
       newsList: []
     }
