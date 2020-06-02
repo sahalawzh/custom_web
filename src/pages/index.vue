@@ -1,6 +1,5 @@
 <template>
   <div class="page-index">
-    <lwzx-header></lwzx-header>
 
     <section>
       <div class="part-item">
@@ -18,11 +17,9 @@
   </div>
 </template>
 <script>
-import LWZXHeader from '@/components/Header'
 import LWZXConcat from '@/components/Concat'
 export default {
   components: {
-    'lwzx-header': LWZXHeader,
     'lwzx-concat': LWZXConcat
   },
   data () {

@@ -1,6 +1,5 @@
 <template>
   <div class="page-online">
-    <lwzx-header></lwzx-header>
 
     <div class="lw-flex is-align-middle tip-box" v-if="homeTop && isShowTip">
       <img src="../assets/common/icon_tip.png" class="tip-icon">
@@ -66,7 +65,6 @@
   </div>
 </template>
 <script>
-import LWZXHeader from '@/components/Header'
 import LWZXConcat from '@/components/Concat'
 import LWZXFooter from '@/components/Footer'
 import pageBottom from '@/components/common/pageBottom'
@@ -78,7 +76,6 @@ import { mapState, mapMutations } from 'vuex'
 import OnlinePrinter from '@/components/onlinePrinter'
 export default {
   components: {
-    'lwzx-header': LWZXHeader,
     'lwzx-concat': LWZXConcat,
     'lwzx-footer': LWZXFooter,
     'page-bottom': pageBottom,

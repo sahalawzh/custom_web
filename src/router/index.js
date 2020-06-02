@@ -18,7 +18,7 @@ Router.prototype.push = function push(location) {
 }
 const router = new Router({
   routes: [
-    { path: "/", redirect: "/index" },
+    { path: "/", redirect: "/online" },
     { path: "/index", component: Index, meta: { title: '在线打印' } },
     { path: "/inform", component: Inform, meta: { title: '兰湾足行' } },
     { path: "/online", component: Online, meta: { title: '在线打印' } },

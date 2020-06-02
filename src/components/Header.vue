@@ -1,8 +1,8 @@
 <template>
   <div class="header-container">
-    <div class="header-main lw-flex is-justify-space-between is-align-middle" @click="isExpand = !isExpand">
-      <img :src="logo" class="logo" alt="">
-      <div class="expand-box">
+    <div class="header-main lw-flex is-justify-space-between is-align-middle">
+      <img :src="logo" class="logo" alt="" @click="handleToHome">
+      <div class="expand-box" @click="isExpand = !isExpand">
         <div class="expand-box__item"></div>
         <div class="expand-box__item"></div>
         <div class="expand-box__item"></div>
@@ -52,6 +52,9 @@ export default {
         key: 'printerVisible',
         value: true
       })
+    },
+    handleToHome () {
+      this.$router.push({path: '/online'})
     },
     handleToOnlinePrinter () {
       this.$router.push({path: '/inform'})

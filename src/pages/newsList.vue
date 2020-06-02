@@ -1,6 +1,5 @@
 <template>
   <div class="page-news">
-    <lwzx-header></lwzx-header>
 
     <div class="new-container">
       <h2>资讯中心</h2>
@@ -34,7 +33,6 @@
   </div>
 </template>
 <script>
-import LWZXHeader from '@/components/Header'
 import LWZXConcat from '@/components/Concat'
 import LWZXFooter from '@/components/Footer'
 import pageBottom from '@/components/common/pageBottom'
@@ -43,7 +41,6 @@ import { timeHandle } from '@/utils/formatTime'
 import pagination from '@/components/common/pagination/main'
 export default {
   components: {
-    'lwzx-header': LWZXHeader,
     'lwzx-concat': LWZXConcat,
     'lwzx-footer': LWZXFooter,
     'page-bottom': pageBottom,

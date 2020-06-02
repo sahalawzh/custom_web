@@ -6,8 +6,14 @@
   z-index: 3;
   background-color: $--white-color;
   .header-main {
+    position: relative;
     padding: 0 px2rem(40) 0 px2rem(15);
     height: px2rem(90);
+    @include one-line (horizontal) {
+      bottom: 0;
+      left: 0;
+      background-color: $--border-color;
+    }
     .logo {
       width: px2rem(270);
       height: px2rem(78);

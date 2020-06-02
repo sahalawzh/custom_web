@@ -1,6 +1,5 @@
 <template>
   <div class="page-case">
-    <lwzx-header></lwzx-header>
 
     <comcase :caseList="caseList"></comcase>
 
@@ -24,7 +23,6 @@ import comcase from '@/components/common/case'
 import { getCaseListCase } from '@/services/api'
 export default {
   components: {
-    'lwzx-header': LWZXHeader,
     'lwzx-concat': LWZXConcat,
     'lwzx-footer': LWZXFooter,
     advantage,

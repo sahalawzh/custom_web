@@ -3,7 +3,7 @@
     <div class="footer-left">
       <div class="footer-title footer-left__title">蓝湾在线定制</div>
       <ul>
-        <li>关于我们</li>
+        <li @click="handleAboutUs">关于我们</li>
         <!-- <li>联系我们</li> -->
         <li @click="handleOpenSecrecy">保密政策</li>
       </ul>
@@ -77,6 +77,9 @@ export default {
     }
   },
   methods: {
+    handleAboutUs () {
+      this.$router.push({path: '/aboutUs'})
+    },
     initScroll () {
       try {
         if (scrollInstance) {
@@ -96,7 +99,10 @@ export default {
       }
     },
     async handleOpenSecrecy () {
-      if (this.secrecyContent) return
+      if (this.secrecyContent) {
+        this.agreeVisible = true
+        return
+      }
       try {
         const { data } = await getConfidentialityAgreement({}, {REJECTERRORCONFIG: {
           serveError: true,

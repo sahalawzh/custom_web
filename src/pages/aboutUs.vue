@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="about-container">
     <div v-html="aboutUsContent"></div>
   </div>
 </template>

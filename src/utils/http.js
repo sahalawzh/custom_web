@@ -3,37 +3,34 @@ import { formatUrlParams } from '@/utils/formatUrlParams'
 
 // import handleErrorStatus from '@/common/utils/handleErrorStatus'
 // 开发环境跨域请求带cookie
-if (process.env.NODE_ENV === 'development') {
-  axios.defaults.withCredentials = true
-} else {
-  try {
-    // const token = document.getElementsByName('csrf-token')[0].getAttribute('content') || ''
-    // axios.defaults.headers.common['X-CSRF-Token'] = token
-  } catch (e) {
-    console.log(e)
-  }
-}
+// if (process.env.NODE_ENV === 'development') {
+//   axios.defaults.withCredentials = true
+// } else {
+//   try {
+//     // const token = document.getElementsByName('csrf-token')[0].getAttribute('content') || ''
+//     // axios.defaults.headers.common['X-CSRF-Token'] = token
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }
+axios.defaults.withCredentials = true
 // 默认一分钟超时
 axios.defaults.timeout = 60000
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API
 // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 // 处理api链接
-axios.interceptors.request.use(function (config) {
-  try {
-    // const { url } = config
-    // if (process.env.NODE_ENV === 'development') {
-    //   config.url = `/api${url}&id=a450089706`
-    // } else {
-    //   if (url.indexOf('/index.php') > -1) {
-    //     config.url = url
-    //   } else {
-    //     config.url = `/index.php/iapi${url}`
-    //   }
-    // }
-  } catch (e) {
-  }
-  return config
-})
+// axios.interceptors.request.use(function (config) {
+//   try {
+//     const { url } = config
+//     if (process.env.NODE_ENV === 'development') {
+//       config.url = ``
+//     } else {
+//     }
+//   } catch (e) {
+//   }
+//   return config
+// })
 
 // resolve error
 axios.interceptors.response.use(function (response) {
@@ -109,10 +106,6 @@ export default {
   post (url, data, config) {
     if (process.env.NODE_ENV === 'development') {
       let d = formatUrl(url, data, config && config.headers && config.headers['Content-Type'])
-      // url = d.url
-      // d.id = formatUrlParams(d.url).inter_id
-      // url += '&unionid=' + UNION_ID
-      // data = d.data
     }
     let _config = Object.assign({}, { data: data, url: url, method: 'post' }, config)
     return axios(_config).then(checkStatus).then(checkCode)
