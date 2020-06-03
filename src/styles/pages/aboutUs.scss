@@ -1,3 +1,80 @@
 .about-container {
-  padding: px2rem(120) px2rem(50);
+  .about-main {
+    padding: px2rem(120) px2rem(26);
+    .about-title {
+      font-size: $--lg-font-size;
+      color: $--main-color;
+      font-weight: bold;
+      margin-bottom: px2rem(22);
+    }
+    p, ul li {
+      font-size: $--sm-font-size;
+      color: $--main-color;
+      line-height: px2rem(42);
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+    .video-box {
+      width: 100%;
+      height: px2rem(394);
+      border-radius: px2rem(10);
+      margin: px2rem(26) 0 px2rem(32);
+    }
+    .about-m {
+      padding: px2rem(30) 0;
+    }
+    .img-one {
+      margin-top: px2rem(38);
+      width: 100%;
+      height: px2rem(170);
+      margin-bottom: px2rem(8);
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .img-two {
+      margin-bottom: px2rem(36);
+      width: 100%;
+      height: px2rem(300);
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .about-t {
+      margin-bottom: px2rem(40);
+    }
+    .img-three {
+      margin: px2rem(32) 0 px2rem(30);
+      width: 100%;
+      height: px2rem(306);
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .compay-team {
+      &__title {
+        font-size: $--md-font-size;
+        margin-bottom: px2rem(12);
+      }
+      &__2 {
+        padding: px2rem(30) 0;
+      }
+      span {
+        width: 50%;
+        display: inline-block;
+      }
+    }
+    .img-four {
+      margin-top: px2rem(50);
+      width: 100%;
+      height: px2rem(525);
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
